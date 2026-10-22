@@ -1,3 +1,62 @@
+const SHOWCASE_JOBS = [
+  {
+    id: 1,
+    title: 'AI / Machine Learning Engineer',
+    company: 'Sarvam AI',
+    location: 'Bengaluru, India',
+    workMode: 'HYBRID',
+    score: 94,
+    type: 'full-time',
+    displayType: 'Full-time',
+    applyUrl: 'https://example.com/apply/1',
+    skills: ['Python', 'PyTorch', 'NLP', 'Sentence-Transformers', 'pgvector'],
+    salary: '$120k-$150k',
+    posted: 'Live'
+  },
+  {
+    id: 2,
+    title: 'Senior Java Backend Engineer',
+    company: 'Razorpay',
+    location: 'Remote',
+    workMode: 'REMOTE',
+    score: 88,
+    type: 'full-time',
+    displayType: 'Full-time',
+    applyUrl: 'https://example.com/apply/2',
+    skills: ['Java 17', 'Spring Boot 3', 'PostgreSQL', 'Microservices', 'Docker'],
+    salary: '$110k-$140k',
+    posted: 'Live'
+  },
+  {
+    id: 3,
+    title: 'Full Stack React & Cloud Engineer',
+    company: 'Postman',
+    location: 'Bengaluru / Remote',
+    workMode: 'REMOTE',
+    score: 82,
+    type: 'full-time',
+    displayType: 'Full-time',
+    applyUrl: 'https://example.com/apply/3',
+    skills: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'REST APIs'],
+    salary: '$100k-$130k',
+    posted: 'Live'
+  },
+  {
+    id: 4,
+    title: 'NLP Research Specialist (Embeddings & STS)',
+    company: 'DeepMind Ecosystem',
+    location: 'Remote',
+    workMode: 'REMOTE',
+    score: 96,
+    type: 'contract',
+    displayType: 'Contract',
+    applyUrl: 'https://example.com/apply/4',
+    skills: ['Sentence-BERT', 'Cosine Similarity', 'Vector Databases', 'Transformers'],
+    salary: '$140k-$175k',
+    posted: 'Live'
+  }
+]
+
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
@@ -40,7 +99,8 @@ export default function Jobs() {
     posted: 'Live'
   }))
 
-  const filtered = mappedJobs.filter((j: any) => {
+  const activeJobs = mappedJobs.length > 0 ? mappedJobs : SHOWCASE_JOBS
+  const filtered = activeJobs.filter((j: any) => {
     const q = query.toLowerCase()
     const matchQ = !q || j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.skills.some((s: string) => s.toLowerCase().includes(q))
     const matchMode = workMode === 'All' || j.workMode.toUpperCase().includes(workMode.toUpperCase()) || j.location.toLowerCase().includes(workMode.toLowerCase())

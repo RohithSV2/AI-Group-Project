@@ -192,6 +192,23 @@ export default function Login() {
                 </span>
               )}
             </button>
+
+            <button 
+              type="button" 
+              onClick={() => {
+                setAuth(
+                  { id: 1, email: 'student.eval@hirematch.ai', firstName: 'Rohith', lastName: 'S', role: 'USER' },
+                  'demo_access_token_evaluation_ok',
+                  'demo_refresh_token_evaluation_ok'
+                )
+                toast.success('Logged in with Demo Student Account!')
+                navigate('/dashboard')
+              }}
+              className="btn-secondary w-full py-2.5 text-xs font-semibold flex items-center justify-center gap-2 border border-indigo-200 bg-indigo-50/50 hover:bg-indigo-100/50 text-indigo-700 transition-colors"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              Explore Live Demo Mode (Instant Evaluation)
+            </button>
           </form>
 
           <p className="text-center text-xs text-[var(--color-on-surface-variant)]">

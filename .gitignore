@@ -1,0 +1,39 @@
+# Python
+venv/
+ai-service/venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Java / Maven
+target/
+backend/target/
+*.class
+*.jar
+*.war
+.flattened-pom.xml
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr
+*.local
+
+# Vercel
+.vercel
+frontend/.vercel
+
+# Environment variables
+.env.local
+.env.*.local
+
+# IDEs
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
