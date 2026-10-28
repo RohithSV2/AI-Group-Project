@@ -90,8 +90,10 @@ export default function Landing() {
           </span>
         </div>
         <div className="flex items-center gap-3">
+          <Link to="/dashboard" className="btn-primary text-sm px-4 py-2 flex items-center gap-1.5 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5" /> Live Demo
+          </Link>
           <Link to="/login" className="btn-secondary text-sm px-4 py-2">Sign In</Link>
-          <Link to="/register" className="btn-primary text-sm px-4 py-2">Get Started Free</Link>
         </div>
       </nav>
 
@@ -129,18 +131,19 @@ export default function Landing() {
           </p>
 
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link to="/register" className="btn-primary px-6 py-3 text-base gap-2">
-              Start Matching Free
+            <Link to="/dashboard" className="btn-primary px-7 py-3 text-base gap-2 shadow-lg hover:shadow-indigo-500/25 transition-all">
+              <Sparkles className="w-4 h-4" />
+              Explore Live Demo
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/login" className="btn-secondary px-6 py-3 text-base">
-              Sign In
+            <Link to="/jobs" className="btn-secondary px-6 py-3 text-base">
+              Browse All Jobs
             </Link>
           </div>
 
           {/* Trust signals */}
           <p className="text-xs mt-6" style={{ color: 'var(--color-outline)' }}>
-            No credit card · GDPR compliant · Delete your data anytime
+            No credit card · Instant Cloud Preview · Zero Setup Required
           </p>
         </div>
       </section>
@@ -244,10 +247,10 @@ export default function Landing() {
             Ready to match smarter?
           </h2>
           <p className="mb-8" style={{ color: 'var(--color-on-surface-variant)' }}>
-            Join thousands of candidates finding roles they actually love.
+            Experience intelligent candidate matching with zero friction.
           </p>
-          <Link to="/register" className="btn-primary px-8 py-3 text-base">
-            Create Free Account <ArrowRight className="w-4 h-4" />
+          <Link to="/dashboard" className="btn-primary px-8 py-3 text-base flex items-center justify-center gap-2 max-w-xs mx-auto">
+            <Sparkles className="w-4 h-4" /> Try Live Demo Now <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
@@ -255,7 +258,7 @@ export default function Landing() {
       {/* ── Footer ───────────────────────────────────────────── */}
       <footer className="py-8 px-8 text-center border-t" style={{ borderColor: 'var(--color-outline-variant)' }}>
         <p className="text-sm" style={{ color: 'var(--color-outline)' }}>
-          © 2026 HireMatch AI · Privacy Policy · Terms of Service
+          © 2026 HireMatch AI · NLP Semantic Textual Similarity Project · National Institute of Engineering (NIE)
         </p>
       </footer>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import './index.css'
 
@@ -27,30 +27,27 @@ const queryClient = new QueryClient({
 })
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, clearAuth } = useAuthStore()
-  const { isError } = useQuery({
-    queryKey: ['session-verify'],
-    queryFn: () => import('@/api/endpoints').then(m => m.profileApi.get()),
-    enabled: isAuthenticated,
-    retry: false,
-    staleTime: 1000 * 30,
-  })
+  const { isAuthenticated, user, setAuth } = useAuthStore()
 
   React.useEffect(() => {
-    if (isError) {
-      clearAuth()
+    // If arriving without an active session (e.g. direct link from resume/portfolio),
+    // automatically initialize demo session so evaluators can inspect features immediately.
+    if (!isAuthenticated || !user) {
+      setAuth(
+        {
+          id: 1,
+          email: 'rohithsvernekar2@gmail.com',
+          firstName: 'Rohith',
+          lastName: 'S',
+          role: 'USER',
+        },
+        'mock_jwt_access_token_secure_valid',
+        'mock_jwt_refresh_token_secure_valid'
+      )
     }
-  }, [isError, clearAuth])
+  }, [isAuthenticated, user, setAuth])
 
-  if (!isAuthenticated || isError) {
-    return <Navigate to="/login" replace />
-  }
   return <>{children}</>
-}
-
-function PublicRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, user } = useAuthStore()
-  return (isAuthenticated && user?.id) ? <Navigate to="/profile" replace /> : <>{children}</>
 }
 
 export default function App() {
@@ -73,8 +70,8 @@ export default function App() {
         <Routes>
           {/* Public routes */}
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
 
           {/* Protected routes — wrapped in AppShell */}
